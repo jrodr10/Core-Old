@@ -12,21 +12,23 @@ import java.util.UUID;
 
 public class MechanicUtils {
 
+
     public static void getTops() {
 
         Object2ObjectMap<String, Double> coinsMap = new Object2ObjectOpenHashMap<>();
+        Object2ObjectMap<String, Integer> killsMap = new Object2ObjectOpenHashMap<>();
+        Object2ObjectMap<String, Integer> deathsMap = new Object2ObjectOpenHashMap<>();
+        Object2ObjectMap<String, Long> timeMap = new Object2ObjectOpenHashMap<>();
+
         ValueDoubleComparator bvcoins = new ValueDoubleComparator(coinsMap);
         TreeMap<String, Double> sorted_map_coins = new TreeMap<String, Double>(bvcoins);
 
-        Object2ObjectMap<String, Integer> killsMap = new Object2ObjectOpenHashMap<>();
         ValueIntegerComparator bvkills = new ValueIntegerComparator(killsMap);
         TreeMap<String, Integer> sorted_map_kills = new TreeMap<String, Integer>(bvkills);
 
-        Object2ObjectMap<String, Integer> deathsMap = new Object2ObjectOpenHashMap<>();
         ValueIntegerComparator bvdeaths = new ValueIntegerComparator(deathsMap);
         TreeMap<String, Integer> sorted_map_deaths = new TreeMap<String, Integer>(bvdeaths);
 
-        Object2ObjectMap<String, Long> timeMap = new Object2ObjectOpenHashMap<>();
         ValueLongComparator bvtime = new ValueLongComparator(timeMap);
         TreeMap<String, Long> sorted_map_time = new TreeMap<String, Long>(bvtime);
 

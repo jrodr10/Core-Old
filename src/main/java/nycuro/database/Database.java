@@ -35,7 +35,7 @@ public class Database {
         config.setDriverClassName("org.sqlite.JDBC");
         config.setJdbcUrl("jdbc:sqlite:plugins/NycuRO-Core/data.db");
         DATASOURCE = new HikariDataSource(config);
-        DATASOURCE.setMaximumPoolSize(10);
+        DATASOURCE.setMaximumPoolSize(1);
 
         String query = "create table if not exists dates (`uuid` varchar, `name` varchar, `language` int, `job` int, `kills` int, `deaths` int, `cooldown` INTEGER, `experience` INTEGER, `level` int, `necesary` INTEGER, `coins` REAL, `time` INTEGER)";
 
@@ -410,18 +410,18 @@ public class Database {
             public void onRun() {
                 try (Connection connection = DATASOURCE.getConnection();
                      PreparedStatement preparedStatement =
-                             connection.prepareStatement("INSERT INTO `dates` (`uuid`, `language`, `job`, `kills`, `deaths`, `cooldown`, `experience`, `level`, `necesary`, `coins`, `time`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
-                    preparedStatement.setString(1, uuid.toString());
-                    preparedStatement.setInt(2, profile.getLanguage());
-                    preparedStatement.setInt(3, profile.getJob());
-                    preparedStatement.setInt(4, profile.getKills());
-                    preparedStatement.setInt(5, profile.getDeaths());
-                    preparedStatement.setLong(6, profile.getCooldown());
-                    preparedStatement.setDouble(7, profile.getExperience());
-                    preparedStatement.setInt(8, profile.getLevel());
-                    preparedStatement.setDouble(9, profile.getNecesary());
-                    preparedStatement.setDouble(10, profile.getCoins());
-                    preparedStatement.setLong(11, profile.getTime());
+                             connection.prepareStatement("UPDATE `dates` SET `language` = ?, `job` = ?, `kills` = ?, `deaths` = ?, `cooldown` = ?, `experience` = ?, `level` = ?, `necesary` = ?, `coins` = ?, `time` = ? WHERE `uuid` = ?")) {
+                    preparedStatement.setInt(1, profile.getLanguage());
+                    preparedStatement.setInt(2, profile.getJob());
+                    preparedStatement.setInt(3, profile.getKills());
+                    preparedStatement.setInt(4, profile.getDeaths());
+                    preparedStatement.setLong(5, profile.getCooldown());
+                    preparedStatement.setDouble(6, profile.getExperience());
+                    preparedStatement.setInt(7, profile.getLevel());
+                    preparedStatement.setDouble(8, profile.getNecesary());
+                    preparedStatement.setDouble(9, profile.getCoins());
+                    preparedStatement.setLong(10, profile.getTime());
+                    preparedStatement.setString(11, uuid.toString());
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);

@@ -1,6 +1,10 @@
 package nycuro;
 
+import cn.nukkit.Server;
+import cn.nukkit.command.ConsoleCommandSender;
 import cn.nukkit.plugin.PluginBase;
+import cn.nukkit.scheduler.Task;
+import cn.nukkit.scheduler.TaskHandler;
 import cn.nukkit.utils.DummyBossBar;
 import cn.nukkit.utils.TextFormat;
 import com.creeperface.nukkit.placeholderapi.api.PlaceholderAPI;
@@ -14,6 +18,7 @@ import nycuro.commands.list.*;
 import nycuro.commands.list.economy.AddCoinsCommand;
 import nycuro.commands.list.economy.GetCoinsCommand;
 import nycuro.commands.list.economy.SetCoinsCommand;
+import nycuro.commands.list.mechanic.SaveToDatabaseCommand;
 import nycuro.commands.list.mechanic.TopCoinsCommand;
 import nycuro.commands.list.mechanic.TopDeathsCommand;
 import nycuro.commands.list.mechanic.TopKillsCommand;
@@ -62,6 +67,7 @@ public class Core extends PluginBase {
         Database.getTopCoins();
         Database.getTopKills();
         Database.getTopDeaths();
+        Database.getTopTime();
     }
 
     public static String time(long time) {
@@ -127,6 +133,7 @@ public class Core extends PluginBase {
         this.getServer().getCommandMap().register("topcoins", new TopCoinsCommand());
         this.getServer().getCommandMap().register("topkills", new TopKillsCommand());
         this.getServer().getCommandMap().register("topdeaths", new TopDeathsCommand());
+        this.getServer().getCommandMap().register("savetodatabase", new SaveToDatabaseCommand());
         this.getServer().getCommandMap().register("spawnentities", new SpawnEntitiesCommand());
         this.getServer().getCommandMap().register("servers", new ServersCommand());
         this.getServer().getCommandMap().register("droppartymessage", new DropPartyMessageCommand());
@@ -153,6 +160,18 @@ public class Core extends PluginBase {
     }
 
     private void registerTasks() {
+        this.getServer().getScheduler().scheduleDelayedRepeatingTask(new Task() {
+            @Override
+            public void onRun(int i) {
+                MechanicUtils.getTops();
+            }
+        }, 20 * 10, 20 * 60 * 3, true);
+        this.getServer().getScheduler().scheduleDelayedRepeatingTask(new Task() {
+            @Override
+            public void onRun(int i) {
+                Server.getInstance().dispatchCommand(new ConsoleCommandSender(), "savetodatabase");
+            }
+        }, 20 * 15, 20 * 60 * 5, true);
         this.getServer().getScheduler().scheduleRepeatingTask(new BossBarTask(), 20 * 5, true);
         this.getServer().getScheduler().scheduleRepeatingTask(new CheckLevelTask(), 20 * 20, true);
         this.getServer().getScheduler().scheduleDelayedTask(new SaveToDatabaseTask(), 20 * 60 * 60 * 3, true);

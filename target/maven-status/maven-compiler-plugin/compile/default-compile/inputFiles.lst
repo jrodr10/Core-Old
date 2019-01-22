@@ -29,6 +29,7 @@ E:\Proiecte\Java\NycuRO-Cores\src\main\java\nycuro\commands\PrincipalCommand.jav
 E:\Proiecte\Java\NycuRO-Cores\src\main\java\nycuro\commands\list\SpawnBossCommand.java
 E:\Proiecte\Java\NycuRO-Cores\src\main\java\nycuro\gui\list\DelegateFormWindow.java
 E:\Proiecte\Java\NycuRO-Cores\src\main\java\nycuro\shop\BuyUtils.java
+E:\Proiecte\Java\NycuRO-Cores\src\main\java\nycuro\commands\list\mechanic\SaveToDatabaseCommand.java
 E:\Proiecte\Java\NycuRO-Cores\src\main\java\nycuro\utils\MechanicUtils.java
 E:\Proiecte\Java\NycuRO-Cores\src\main\java\nycuro\api\ShopAPI.java
 E:\Proiecte\Java\NycuRO-Cores\src\main\java\nycuro\api\MessageAPI.java

@@ -40,6 +40,5 @@ public class CheckLevelTask extends Task {
                 }
             }
         }
-        MechanicUtils.getTops();
     }
 }

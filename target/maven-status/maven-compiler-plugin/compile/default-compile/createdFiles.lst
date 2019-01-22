@@ -3,6 +3,7 @@ nycuro\database\Database$3.class
 nycuro\api\ShopAPI$2.class
 nycuro\api\ShopAPI$16.class
 nycuro\database\Database$22.class
+nycuro\Core$1.class
 nycuro\crate\item\EntityFirework.class
 nycuro\database\Database$15.class
 nycuro\commands\list\DropPartyMessageCommand.class
@@ -42,6 +43,7 @@ nycuro\api\MessageAPI.class
 nycuro\kits\SparrowKit.class
 nycuro\tasks\CheckLevelTask.class
 nycuro\database\Database$2.class
+nycuro\Core$2.class
 nycuro\database\Database$11.class
 nycuro\kits\VIPPlusKit.class
 nycuro\database\Database$9.class
@@ -95,6 +97,7 @@ nycuro\database\Database$27.class
 nycuro\commands\list\KitsCommand.class
 nycuro\api\MechanicAPI$1.class
 nycuro\database\Database$4.class
+nycuro\commands\list\mechanic\SaveToDatabaseCommand.class
 nycuro\shop\EnchantUtils.class
 nycuro\api\MechanicAPI.class
 nycuro\database\Database$20.class
