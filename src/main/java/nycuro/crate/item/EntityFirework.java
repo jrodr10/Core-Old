@@ -99,7 +99,7 @@ public class EntityFirework extends Entity {
                         LevelSoundEventPacket pk2 = new LevelSoundEventPacket();
                         pk2.sound = 57;
                         pk2.extraData = -1;
-                        pk2.pitch = -1;
+                        //pk.pitch = -1;
                         pk2.x = (float) this.getX();
                         pk2.y = (float) this.getY();
                         pk2.z = (float) this.getZ();

@@ -19,8 +19,6 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class RandomTPUtils {
 
-    private static ArrayList<Boolean> blocked = new ArrayList<>();
-    private static ArrayList<Boolean> teleported = new ArrayList<>();
     private static TaskHandler taskHandler;
 
     /**
@@ -34,37 +32,31 @@ public class RandomTPUtils {
         taskHandler = player.getServer().getScheduler().scheduleDelayedTask(new Task() {
             @Override
             public void onRun(int i) {
-                if (!level.getChunk(x >> 4, z >> 4).isLoaded()) {
-                    blocked.add((int) player.getId(), true);
-                } else {
-                    player.teleport(new Vector3(x, 255, z), PlayerTeleportEvent.TeleportCause.COMMAND);
-                    player.teleport(highestBlockPosition(level, x, z), PlayerTeleportEvent.TeleportCause.COMMAND);
-                    API.getMessageAPI().sendRandomTPMessage(player, x, z);
-                    taskHandler.cancel();
-                }
-                if (blocked.get((int) player.getId())) {
-                    API.getMainAPI().getServer().getScheduler().scheduleRepeatingTask(new Task() {
-                        @Override
-                        public void onRun(int i) {
-                            if (!blocked.get((int) player.getId())) {
-                                player.teleport(new Vector3(x, 255, z), PlayerTeleportEvent.TeleportCause.COMMAND);
-                                player.teleport(highestBlockPosition(level, x, z), PlayerTeleportEvent.TeleportCause.COMMAND);
-                                API.getMessageAPI().sendRandomTPMessage(player, x, z);
-                                teleported.add((int) player.getId(), true);
-                            }
-                            if (teleported.get((int) player.getId())) {
-                                if (!this.getHandler().isCancelled()) {
-                                    this.getHandler().cancel();
-                                }
-                                if (!taskHandler.isCancelled()) {
-                                    taskHandler.cancel();
-                                }
-                            }
+                player.getServer().getScheduler().scheduleRepeatingTask(new Task() {
+                    @Override
+                    public void onRun(int i) {
+                        level.getChunk(x >> 4, z >> 4).isLoaded();
+                    }
+                }, 1, true);
+                if (level.getChunk(x >> 4, z >> 4).isLoaded()) {
+                    try {
+                        Thread.sleep(5000);
+                    } catch (Exception e) {
+                        // ignore
+                    } finally {
+                        player.setImmobile(true);
+                        player.teleport(new Vector3(x, 255, z), PlayerTeleportEvent.TeleportCause.COMMAND);
+                        player.teleport(highestBlockPosition(level, x, z), PlayerTeleportEvent.TeleportCause.COMMAND);
+                        player.setImmobile(false);
+                        if (!taskHandler.isCancelled()) {
+                            taskHandler.cancel();
+                            this.cancel();
+                            this.getHandler().cancel();
                         }
-                    }, 1, true);
+                    }
                 }
             }
-        }, 10);
+        }, 10, true);
     }
 
     private Vector3 highestBlockPosition(Level level, int x, int z) {
