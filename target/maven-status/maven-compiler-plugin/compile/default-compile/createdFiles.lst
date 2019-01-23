@@ -20,6 +20,7 @@ nycuro\commands\list\ShopCommand.class
 nycuro\database\Database$28.class
 nycuro\commands\list\SpawnEntitiesCommand.class
 nycuro\language\handlers\LanguageHandlers.class
+nycuro\utils\RandomTPUtils$3.class
 nycuro\api\ShopAPI$13.class
 nycuro\gui\handlers\GUIHandlers.class
 nycuro\commands\list\SpawnCommand$1.class
@@ -52,7 +53,6 @@ nycuro\database\Database.class
 nycuro\api\UtilsAPI$2.class
 nycuro\database\Database$23.class
 nycuro\crate\CrateAPI.class
-nycuro\utils\RandomTPUtils$1$1.class
 nycuro\utils\MechanicUtils.class
 nycuro\api\ShopAPI$12.class
 nycuro\kits\EnchantedStarterKit.class
@@ -72,6 +72,7 @@ nycuro\dropparty\DropPartyAPI.class
 nycuro\commands\PrincipalCommand.class
 nycuro\jobs\handlers\JobsHandlers.class
 nycuro\mechanic\handlers\MechanicHandlers$1.class
+nycuro\utils\RandomTPUtils$2.class
 nycuro\API.class
 nycuro\api\ShopAPI$3.class
 nycuro\database\Database$21.class

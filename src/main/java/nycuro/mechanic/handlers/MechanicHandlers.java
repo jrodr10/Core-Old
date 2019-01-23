@@ -75,43 +75,4 @@ public class MechanicHandlers implements Listener {
             event.setCancelled(true);
         }
     }
-
-    @EventHandler
-    public void onHurt(EntityDamageEvent event) {
-        Player player = (event.getEntity() instanceof Player) ? (Player) event.getEntity() : null;
-        if (player == null) return;
-        Player damager = null;
-        if (event instanceof EntityDamageByEntityEvent) {
-            EntityDamageByEntityEvent ev = (EntityDamageByEntityEvent) event;
-            if (ev instanceof EntityDamageByChildEntityEvent) {
-                EntityDamageByChildEntityEvent evc = (EntityDamageByChildEntityEvent) ev;
-                if (evc.getDamager() instanceof Player) damager = (Player) evc.getDamager();
-            } else if (ev.getDamager() instanceof Player) damager = (Player) ev.getDamager();
-
-            if (damager == null) return;
-            /** Credits: @Nora. Thanks! */
-            if (!API.getMechanicAPI().isOnSpawn(damager)) {
-                if (!API.getMechanicAPI().isOnSpawn(player)) {
-                    API.getMessageAPI().sendHitBowMessage(player, damager);
-                    if (event.getDamage() >= player.getHealth()) {
-                        event.setCancelled();
-                        player.setHealth(20);
-                        player.getFoodData().setLevel(20);
-                        player.teleport(player.getServer().getDefaultLevel().getSpawnLocation());
-                        player.removeAllEffects();
-                        player.getInventory().clearAll();
-                        API.getMessageAPI().sendDeadMessage(player, damager);
-                    }
-                    if (player.getPosition().getY() < 0) {
-                        event.setCancelled();
-                        player.setHealth(20);
-                        player.getFoodData().setLevel(20);
-                        player.teleport(player.getServer().getDefaultLevel().getSpawnLocation());
-                        player.removeAllEffects();
-                        player.getInventory().clearAll();
-                    }
-                }
-            }
-        }
-    }
 }

@@ -17,7 +17,7 @@ public class BossEntity extends Zombie {
         this.setMaxHealth(100);
         this.setHealth(100F);
         this.setScale(2F);
-        this.setDamage(new int[]{
+        this.setDamage(new int[] {
                 10, 12, 15, 20
         });
         this.spawnToAll();

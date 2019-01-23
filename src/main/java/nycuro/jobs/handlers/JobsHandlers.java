@@ -106,6 +106,7 @@ public class JobsHandlers implements Listener {
                     Player damager = (Player) evc.getDamager();
                     if (!API.getMechanicAPI().isOnSpawn(damager)) {
                         if (!API.getMechanicAPI().isOnSpawn(eventEntity)) {
+                            sendToRespawn(eventEntity, damager, event);
                             Profile profile = Database.profile.get(damager.getUniqueId());
                             int job = profile.getJob();
                             switch (job) {
@@ -128,6 +129,7 @@ public class JobsHandlers implements Listener {
                 Player damager = (Player) ev.getDamager();
                 if (!API.getMechanicAPI().isOnSpawn(damager)) {
                     if (!API.getMechanicAPI().isOnSpawn(eventEntity)) {
+                        sendToRespawn(eventEntity, damager, event);
                         Profile profile = Database.profile.get(damager.getUniqueId());
                         int job = profile.getJob();
                         switch (job) {
@@ -186,6 +188,30 @@ public class JobsHandlers implements Listener {
                         break;
                 }
             }
+        }
+    }
+
+    /** Credits: @Nora. Thanks! */
+    /** FIX: When adding mobs */
+    private void sendToRespawn(Entity entity, Player damager, EntityDamageEvent event) {
+        Player player = (Player) entity;
+        API.getMessageAPI().sendHitBowMessage(player, damager);
+        if (event.getDamage() >= player.getHealth()) {
+            event.setCancelled();
+            player.setHealth(20);
+            player.getFoodData().setLevel(20);
+            player.teleport(player.getServer().getDefaultLevel().getSpawnLocation());
+            player.removeAllEffects();
+            player.getInventory().clearAll();
+            API.getMessageAPI().sendDeadMessage(player, damager);
+        }
+        if (player.getPosition().getY() < 0) {
+            event.setCancelled();
+            player.setHealth(20);
+            player.getFoodData().setLevel(20);
+            player.teleport(player.getServer().getDefaultLevel().getSpawnLocation());
+            player.removeAllEffects();
+            player.getInventory().clearAll();
         }
     }
 }

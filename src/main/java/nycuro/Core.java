@@ -4,7 +4,6 @@ import cn.nukkit.Server;
 import cn.nukkit.command.ConsoleCommandSender;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.scheduler.Task;
-import cn.nukkit.scheduler.TaskHandler;
 import cn.nukkit.utils.DummyBossBar;
 import cn.nukkit.utils.TextFormat;
 import com.creeperface.nukkit.placeholderapi.api.PlaceholderAPI;
@@ -170,6 +169,7 @@ public class Core extends PluginBase {
             @Override
             public void onRun(int i) {
                 Server.getInstance().dispatchCommand(new ConsoleCommandSender(), "savetodatabase");
+                Server.getInstance().dispatchCommand(new ConsoleCommandSender(), "spawnentities");
             }
         }, 20 * 15, 20 * 60 * 5, true);
         this.getServer().getScheduler().scheduleRepeatingTask(new BossBarTask(), 20 * 5, true);
