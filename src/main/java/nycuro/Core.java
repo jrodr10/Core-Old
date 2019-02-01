@@ -1,6 +1,6 @@
 package nycuro;
 
-import cn.nukkit.Server;
+import cn.nukkit.Player;
 import cn.nukkit.command.ConsoleCommandSender;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.scheduler.Task;
@@ -9,6 +9,12 @@ import cn.nukkit.utils.TextFormat;
 import com.creeperface.nukkit.placeholderapi.api.PlaceholderAPI;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import me.lucko.luckperms.LuckPerms;
+import me.lucko.luckperms.api.LuckPermsApi;
+import me.lucko.luckperms.api.Node;
+import me.lucko.luckperms.api.NodeFactory;
+import me.lucko.luckperms.common.commands.generic.permission.PermissionSet;
+import me.lucko.luckperms.common.node.factory.NodeBuilder;
 import nycuro.abuse.handlers.AbuseHandlers;
 import nycuro.ai.AiAPI;
 import nycuro.api.*;
@@ -71,8 +77,9 @@ public class Core extends PluginBase {
 
     public static String time(long time) {
         int hours = (int) TimeUnit.MILLISECONDS.toHours(time);
-        int minutes = (int) TimeUnit.MILLISECONDS.toMinutes(time);
-        int seconds = (int) (TimeUnit.MILLISECONDS.toSeconds(time) - minutes * 60);
+        int minutes = (int) (TimeUnit.MILLISECONDS.toMinutes(time) - hours * 60);
+        int MINS = (int) TimeUnit.MILLISECONDS.toMinutes(time);
+        int seconds = (int) (TimeUnit.MILLISECONDS.toSeconds(time) - MINS * 60);
         return String.valueOf(hours + ":" + minutes + ":" + seconds);
     }
 
@@ -168,10 +175,48 @@ public class Core extends PluginBase {
         this.getServer().getScheduler().scheduleDelayedRepeatingTask(new Task() {
             @Override
             public void onRun(int i) {
-                Server.getInstance().dispatchCommand(new ConsoleCommandSender(), "savetodatabase");
-                Server.getInstance().dispatchCommand(new ConsoleCommandSender(), "spawnentities");
+                API.getMainAPI().getServer().dispatchCommand(new ConsoleCommandSender(), "savetodatabase");
+                API.getMainAPI().getServer().dispatchCommand(new ConsoleCommandSender(), "spawnentities");
+                for (Player player : API.getMainAPI().getServer().getOnlinePlayers().values()) {
+                    LuckPermsApi api = LuckPerms.getApi();
+                    NodeFactory NODE_BUILDER = api.getNodeFactory();
+                    if (player.getName().equals(Database.scoreboardtimeName.getOrDefault(1, " "))) {
+                        api.getUser(player.getUniqueId()).setPrimaryGroup("HELPERJR");
+                    } else {
+                        if (!player.getName().equals("NycuR0")) {
+                            api.getUser(player.getUniqueId()).setPrimaryGroup("DEFAULT");
+                        }
+                    }
+                    if (player.getName().equals(Database.scoreboardkillsName.getOrDefault(1, " "))) {
+                        api.getUser(player.getUniqueId()).setPermission(NODE_BUILDER.newBuilder("core.7").build());
+                    } else if (player.getName().equals(Database.scoreboardkillsName.getOrDefault(2, " "))) {
+                        api.getUser(player.getUniqueId()).setPermission(NODE_BUILDER.newBuilder("core.3").build());
+                    } else if (player.getName().equals(Database.scoreboardkillsName.getOrDefault(3, " "))) {
+                        api.getUser(player.getUniqueId()).setPermission(NODE_BUILDER.newBuilder("core.2").build());
+                    } else {
+                        if (!player.getName().equals("NycuR0")) {
+                            for (Node permissions : api.getUser(player.getUniqueId()).getPermissions()) {
+                                if (permissions.equals(NODE_BUILDER.newBuilder("core.2").build())) {
+                                    api.getUser(player.getUniqueId()).unsetPermission(NODE_BUILDER.newBuilder("core.2").build());
+                                }
+                                if (permissions.equals(NODE_BUILDER.newBuilder("core.3").build())) {
+                                    api.getUser(player.getUniqueId()).unsetPermission(NODE_BUILDER.newBuilder("core.3").build());
+                                }
+                                if (permissions.equals(NODE_BUILDER.newBuilder("core.7").build())) {
+                                    api.getUser(player.getUniqueId()).unsetPermission(NODE_BUILDER.newBuilder("core.7").build());
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }, 20 * 15, 20 * 60 * 5, true);
+        this.getServer().getScheduler().scheduleDelayedRepeatingTask(new Task() {
+            @Override
+            public void onRun(int i) {
+                API.getMainAPI().getServer().dispatchCommand(new ConsoleCommandSender(), "mob removeall");
+            }
+        }, 20 * 15, 20 * 60 * 28, true);
         this.getServer().getScheduler().scheduleRepeatingTask(new BossBarTask(), 20 * 5, true);
         this.getServer().getScheduler().scheduleRepeatingTask(new CheckLevelTask(), 20 * 20, true);
         this.getServer().getScheduler().scheduleDelayedTask(new SaveToDatabaseTask(), 20 * 60 * 60 * 3, true);

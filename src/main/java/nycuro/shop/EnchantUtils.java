@@ -13,29 +13,31 @@ import java.util.List;
  */
 public class EnchantUtils {
 
+    // TODO: Thrones is bugged and players can multiply items with them.
+
     public void sendHelmetOptionContents(Player player) {
-        List<String> list = Arrays.asList("Aqua Affinity", "Blast Protection", "Fire Protection", "Projectile Protection", "Protection", "Respiration", "Thorns");
+        List<String> list = Arrays.asList("Aqua Affinity", "Blast Protection", "Fire Protection", "Projectile Protection", "Protection", "Respiration");
         List<String> countList = Arrays.asList("1", "2", "3", "4", "5");
         List<String> type = Arrays.asList("1", "2");
         API.getShopAPI().sendFormWindowCustomWithEnchantArmorList(player, list, countList, type);
     }
 
     public void sendChestplateOptionContents(Player player) {
-        List<String> list = Arrays.asList("Blast Protection", "Fire Protection", "Mending", "Projectile Protection", "Protection", "Thorns", "Unbreaking");
+        List<String> list = Arrays.asList("Blast Protection", "Fire Protection", "Mending", "Projectile Protection", "Protection", "Unbreaking");
         List<String> countList = Arrays.asList("1", "2", "3", "4", "5");
         List<String> type = Arrays.asList("1", "2");
         API.getShopAPI().sendFormWindowCustomWithEnchantArmorList(player, list, countList, type);
     }
 
     public void sendLeggingsOptionContents(Player player) {
-        List<String> list = Arrays.asList("Blast Protection", "Fire Protection", "Projectile Protection", "Protection", "Thorns");
+        List<String> list = Arrays.asList("Blast Protection", "Fire Protection", "Projectile Protection", "Protection");
         List<String> countList = Arrays.asList("1", "2", "3", "4", "5");
         List<String> type = Arrays.asList("1", "2");
         API.getShopAPI().sendFormWindowCustomWithEnchantArmorList(player, list, countList, type);
     }
 
     public void sendBootsOptionContents(Player player) {
-        List<String> list = Arrays.asList("Blast Protection", "Depth Strider", "Feather Falling", "Fire Protection", "Frost Walker", "Projectile Protection", "Protection", "Thorns");
+        List<String> list = Arrays.asList("Blast Protection", "Depth Strider", "Feather Falling", "Fire Protection", "Frost Walker", "Projectile Protection", "Protection");
         List<String> countList = Arrays.asList("1", "2", "3", "4", "5");
         List<String> type = Arrays.asList("1", "2");
         API.getShopAPI().sendFormWindowCustomWithEnchantArmorList(player, list, countList, type);

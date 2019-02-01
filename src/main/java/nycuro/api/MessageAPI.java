@@ -28,6 +28,18 @@ public class MessageAPI {
         }
     }
 
+    public void sendNotWorkServiceMessage(Player player) {
+        int lang = Database.profile.get(player.getUniqueId()).getLanguage();
+        switch (lang) {
+            case 0:
+                player.sendMessage("§7(§3!§7) §4Error: §7This function not work! Use §b/utils §7options.");
+                break;
+            case 1:
+                player.sendMessage("§7(§3!§7) §4Eroare: §7Aceasta functie nu merge inca! Foloseste optiunile de la §b/utils§7.");
+                break;
+        }
+    }
+
     public void sendSmecherieMessage(Player player) {
         int lang = Database.profile.get(player.getUniqueId()).getLanguage();
         switch (lang) {

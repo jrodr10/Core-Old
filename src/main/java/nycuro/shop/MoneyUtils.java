@@ -296,7 +296,6 @@ public class MoneyUtils {
         cost.put("Sharpness", 3500);
         cost.put("Silk Touch", 5000);
         cost.put("Smite", 3000);
-        cost.put("Thorns", 3000);
         cost.put("Unbreaking", 3500);
 
         cost.put("Glass", 3.90625);
@@ -362,7 +361,6 @@ public class MoneyUtils {
         exp.put("Sharpness", 15);
         exp.put("Silk Touch", 10);
         exp.put("Smite", 15);
-        exp.put("Thorns", 17);
         exp.put("Unbreaking", 15);
 
         enchant.put("Aqua Affinity", Enchantment.ID_WATER_WORKER);
@@ -390,7 +388,6 @@ public class MoneyUtils {
         enchant.put("Sharpness", Enchantment.ID_DAMAGE_ALL);
         enchant.put("Silk Touch", Enchantment.ID_SILK_TOUCH);
         enchant.put("Smite", Enchantment.ID_DAMAGE_SMITE);
-        enchant.put("Thorns", Enchantment.ID_THORNS);
         enchant.put("Unbreaking", Enchantment.ID_DURABILITY);
     }
 

@@ -111,15 +111,16 @@ public class JobsHandlers implements Listener {
                             int job = profile.getJob();
                             switch (job) {
                                 case 4:
-                                    if (eventEntity instanceof EntityAnimal) return;
-                                    if (eventEntity instanceof EntityCreature) return;
-                                    profile.addCoins(0.5);
-                                    profile.addExperience(1.0);
+                                    if (eventEntity instanceof Player) {
+                                        profile.addCoins(0.4);
+                                        profile.addExperience(2.0);
+                                    }
                                     break;
                                 case 5:
-                                    if (eventEntity instanceof Player) return;
-                                    profile.addCoins(0.4);
-                                    profile.addExperience(1.0);
+                                    if (!(eventEntity instanceof Player)) {
+                                        profile.addCoins(0.4);
+                                        profile.addExperience(1.0);
+                                    }
                                     break;
                             }
                         }
@@ -134,15 +135,16 @@ public class JobsHandlers implements Listener {
                         int job = profile.getJob();
                         switch (job) {
                             case 4:
-                                if (eventEntity instanceof EntityAnimal) return;
-                                if (eventEntity instanceof EntityCreature) return;
-                                profile.addCoins(0.4);
-                                profile.addExperience(2.0);
+                                if (eventEntity instanceof Player) {
+                                    profile.addCoins(0.4);
+                                    profile.addExperience(2.0);
+                                }
                                 break;
                             case 5:
-                                if (eventEntity instanceof Player) return;
-                                profile.addCoins(0.4);
-                                profile.addExperience(1.0);
+                                if (!(eventEntity instanceof Player)) {
+                                    profile.addCoins(0.4);
+                                    profile.addExperience(1.0);
+                                }
                                 break;
                         }
                     }
@@ -170,27 +172,6 @@ public class JobsHandlers implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = false)
-    public void onPlayerDeath(PlayerDeathEvent event) {
-        Player player = event.getEntity();
-        Profile profilePlayer = Database.profile.get(player.getUniqueId());
-        profilePlayer.addDeaths(1);
-        if ((player.getLastDamageCause() instanceof EntityDamageByEntityEvent)) {
-            if (((EntityDamageByEntityEvent) player.getLastDamageCause()).getDamager() instanceof Player) {
-                Player killer = (Player) ((EntityDamageByEntityEvent) player.getLastDamageCause()).getDamager();
-                Profile profile = Database.profile.get(killer.getUniqueId());
-                int job = profile.getJob();
-                switch (job) {
-                    case 4:
-                        profile.addKills(1);
-                        profile.addCoins(3.0);
-                        profile.addExperience(2.0);
-                        break;
-                }
-            }
-        }
-    }
-
     /** Credits: @Nora. Thanks! */
     /** FIX: When adding mobs */
     private void sendToRespawn(Entity entity, Player damager, EntityDamageEvent event) {
@@ -204,6 +185,8 @@ public class JobsHandlers implements Listener {
             player.removeAllEffects();
             player.getInventory().clearAll();
             API.getMessageAPI().sendDeadMessage(player, damager);
+            Profile profile = Database.profile.get(player.getUniqueId());
+            profile.addDeaths(1);
         }
         if (player.getPosition().getY() < 0) {
             event.setCancelled();
@@ -212,6 +195,8 @@ public class JobsHandlers implements Listener {
             player.teleport(player.getServer().getDefaultLevel().getSpawnLocation());
             player.removeAllEffects();
             player.getInventory().clearAll();
+            Profile profile = Database.profile.get(player.getUniqueId());
+            profile.addDeaths(1);
         }
     }
 }

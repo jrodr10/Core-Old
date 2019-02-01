@@ -11,6 +11,8 @@ import cn.nukkit.event.inventory.InventoryOpenEvent;
 import cn.nukkit.event.player.PlayerDropItemEvent;
 import cn.nukkit.event.player.PlayerItemHeldEvent;
 import cn.nukkit.inventory.InventoryType;
+import cn.nukkit.item.Item;
+import cn.nukkit.item.enchantment.Enchantment;
 import nycuro.API;
 
 /**
@@ -24,6 +26,13 @@ public class AbuseHandlers implements Listener {
     public void onInteract(InventoryOpenEvent event) {
         Player player = event.getPlayer();
         InventoryType inventoryType = event.getInventory().getType();
+        switch (inventoryType) {
+            case ENCHANT_TABLE:
+            case ANVIL:
+                event.setCancelled(true);
+                API.getMessageAPI().sendNotWorkServiceMessage(player);
+                break;
+        }
         if (player.getGamemode() == Player.CREATIVE) {
             switch (inventoryType) {
                 case CHEST:
@@ -49,6 +58,21 @@ public class AbuseHandlers implements Listener {
     public void onInteract(PlayerItemHeldEvent event) {
         Player player = event.getPlayer();
         int itemId = event.getItem().getId();
+        switch (itemId) {
+            case Item.ENCHANTING_TABLE:
+                event.setCancelled(true);
+                API.getMessageAPI().sendAbuseMessage(player);
+                break;
+        }
+        if (event.getItem().isArmor()) {
+            for (Enchantment enchantment : event.getItem().getEnchantments()) {
+                if (enchantment.getId() == Enchantment.ID_THORNS) {
+                    event.setCancelled(true);
+                    API.getMessageAPI().sendAbuseMessage(player);
+                    break;
+                }
+            }
+        }
         if (player.getGamemode() == Player.CREATIVE) {
             switch (itemId) {
                 case 384:
@@ -76,10 +100,12 @@ public class AbuseHandlers implements Listener {
     public void onPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
         int blockId = event.getBlock().getId();
-        if (blockId == 131) {
-            event.setCancelled(true);
-            API.getMessageAPI().sendAbuseMessage(player);
-            return;
+        switch (blockId) {
+            case Item.ENCHANTING_TABLE:
+            case 131:
+                event.setCancelled(true);
+                API.getMessageAPI().sendAbuseMessage(player);
+                break;
         }
         if (player.getGamemode() == Player.CREATIVE) {
             switch (blockId) {

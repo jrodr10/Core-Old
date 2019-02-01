@@ -88,6 +88,7 @@ nycuro\database\Database$24.class
 nycuro\commands\list\mechanic\TopKillsCommand.class
 nycuro\database\Database$16.class
 nycuro\api\ShopAPI$6.class
+nycuro\Core$3.class
 nycuro\database\Database$19.class
 nycuro\kits\MVPKit.class
 nycuro\api\UtilsAPI.class
