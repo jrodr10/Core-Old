@@ -149,6 +149,7 @@ public class Core extends PluginBase {
         this.getServer().getCommandMap().register("shop", new ShopCommand());
         this.getServer().getCommandMap().register("spawn", new SpawnCommand());
         this.getServer().getCommandMap().register("utils", new UtilsCommand());
+        this.getServer().getCommandMap().register("coords", new CoordsCommand());// TODO: Save to Database
     }
 
     private void registerEvents() {
@@ -182,6 +183,7 @@ public class Core extends PluginBase {
                     NodeFactory NODE_BUILDER = api.getNodeFactory();
                     if (player.getName().equals(Database.scoreboardtimeName.getOrDefault(1, " "))) {
                         api.getUser(player.getUniqueId()).setPrimaryGroup("HELPERJR");
+                        System.out.println("Am gasit TOP1 TIME: " + player.getName());
                     } else {
                         if (!player.getName().equals("NycuR0")) {
                             api.getUser(player.getUniqueId()).setPrimaryGroup("DEFAULT");
@@ -189,10 +191,13 @@ public class Core extends PluginBase {
                     }
                     if (player.getName().equals(Database.scoreboardkillsName.getOrDefault(1, " "))) {
                         api.getUser(player.getUniqueId()).setPermission(NODE_BUILDER.newBuilder("core.7").build());
+                        System.out.println("Am gasit TOP1 kills: " + player.getName());
                     } else if (player.getName().equals(Database.scoreboardkillsName.getOrDefault(2, " "))) {
                         api.getUser(player.getUniqueId()).setPermission(NODE_BUILDER.newBuilder("core.3").build());
+                        System.out.println("Am gasit TOP2 kills: " + player.getName());
                     } else if (player.getName().equals(Database.scoreboardkillsName.getOrDefault(3, " "))) {
                         api.getUser(player.getUniqueId()).setPermission(NODE_BUILDER.newBuilder("core.2").build());
+                        System.out.println("Am gasit TOP3 kills: " + player.getName());
                     } else {
                         if (!player.getName().equals("NycuR0")) {
                             for (Node permissions : api.getUser(player.getUniqueId()).getPermissions()) {

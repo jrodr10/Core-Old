@@ -996,6 +996,26 @@ public class MessageAPI {
         }
     }
 
+    public void sendCoordsSwitchMessage(Player player, boolean bool) {
+        int lang = Database.profile.get(player.getUniqueId()).getLanguage();
+        switch (lang) {
+            case 0:
+                if (bool) {
+                    player.sendMessage("§7» §3You set to §4NOT §3show coordonates!§r");
+                } else {
+                    player.sendMessage("§7» §3You set to show your coordonates!§r");
+                }
+                break;
+            case 1:
+                if (bool) {
+                    player.sendMessage("§7» §3Ai setat sa ti se §4NU §3vada coordonatele!§r");
+                } else {
+                    player.sendMessage("§7» §3Ai setat sa ti se vada coordonatele!§r");
+                }
+                break;
+        }
+    }
+
     public void sendFirstJoinTitle(Player player) {
         int lang = 0;
         Profile profile = Database.profile.get(player.getUniqueId());

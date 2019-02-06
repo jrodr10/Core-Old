@@ -42,6 +42,15 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="Maven: gt.creeperface.nukkit.scoreboardapi:ScoreboardAPI:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/ScoreboardAPI.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="Maven: ru.nukkit.multipass:Multipass:1.0-SNAPSHOT">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/LuckPerms-Nukkit-4.2.51.jar!/" />

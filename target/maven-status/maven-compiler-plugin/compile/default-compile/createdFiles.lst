@@ -18,6 +18,7 @@ nycuro\commands\list\SpawnCommand.class
 nycuro\commands\list\economy\GetCoinsCommand.class
 nycuro\commands\list\ShopCommand.class
 nycuro\database\Database$28.class
+nycuro\mechanic\handlers\MechanicHandlers$3.class
 nycuro\commands\list\SpawnEntitiesCommand.class
 nycuro\language\handlers\LanguageHandlers.class
 nycuro\utils\RandomTPUtils$3.class
@@ -44,6 +45,7 @@ nycuro\api\MessageAPI.class
 nycuro\kits\SparrowKit.class
 nycuro\tasks\CheckLevelTask.class
 nycuro\database\Database$2.class
+nycuro\commands\list\CoordsCommand.class
 nycuro\Core$2.class
 nycuro\database\Database$11.class
 nycuro\kits\VIPPlusKit.class
@@ -63,6 +65,7 @@ nycuro\kits\handlers\KitHandlers.class
 nycuro\shop\BuyUtils.class
 nycuro\api\ShopAPI.class
 nycuro\utils\RandomTPUtils$1.class
+nycuro\mechanic\handlers\MechanicHandlers$2.class
 nycuro\api\ShopAPI$9.class
 nycuro\ai\entity\BossEntity.class
 nycuro\api\JobsAPI$1.class
