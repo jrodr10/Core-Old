@@ -103,14 +103,6 @@ public class MechanicAPI {
         API.getMessageAPI().sendDropPartyReceiveKeyMessage(player);
     }
 
-    public void checkCooldownTime(Player player, long time) {
-        Profile profile = Database.profile.get(player.getUniqueId());
-        long cooldown = profile.getCooldown();
-        if (cooldown == 0) {
-            API.getDatabase().setCooldown(player, time);
-        }
-    }
-
     public void createBossBar(Player player) {
         API.getMainAPI().bossbar.put(player.getName(), new DummyBossBar.Builder(player)
                 .text("bossbar")

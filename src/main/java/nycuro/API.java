@@ -5,6 +5,7 @@ import nycuro.api.*;
 import nycuro.crate.CrateAPI;
 import nycuro.database.Database;
 import nycuro.dropparty.DropPartyAPI;
+import nycuro.mechanic.handlers.MechanicHandlers;
 
 /**
  * author: NycuRO
@@ -36,6 +37,8 @@ public class API {
     public static Database database;
 
     public static SlotsAPI slotsAPI;
+
+    public static MechanicHandlers mechanicHandlers;
 
     public static Core getMainAPI() {
         return mainAPI;
@@ -84,4 +87,6 @@ public class API {
     public static SlotsAPI getSlotsAPI() {
         return slotsAPI;
     }
+
+    public static MechanicHandlers getMechanicHandlers() { return mechanicHandlers; }
 }

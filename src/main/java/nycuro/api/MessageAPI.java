@@ -1000,14 +1000,14 @@ public class MessageAPI {
         int lang = Database.profile.get(player.getUniqueId()).getLanguage();
         switch (lang) {
             case 0:
-                if (bool) {
+                if (!bool) {
                     player.sendMessage("§7» §3You set to §4NOT §3show coordonates!§r");
                 } else {
                     player.sendMessage("§7» §3You set to show your coordonates!§r");
                 }
                 break;
             case 1:
-                if (bool) {
+                if (!bool) {
                     player.sendMessage("§7» §3Ai setat sa ti se §4NU §3vada coordonatele!§r");
                 } else {
                     player.sendMessage("§7» §3Ai setat sa ti se vada coordonatele!§r");

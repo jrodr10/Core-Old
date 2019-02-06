@@ -76,8 +76,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of addDatesPlayer was a succesful!");
                 }
             }
         });
@@ -140,8 +138,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of TopCoins was a succesful!");
                 }
             }
         });
@@ -204,8 +200,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of TopKills was a succesful!");
                 }
             }
         });
@@ -268,8 +262,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of TopDeaths was a succesful!");
                 }
             }
         });
@@ -332,8 +324,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of TopTime was a succesful!");
                 }
             }
         });
@@ -353,8 +343,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Checking of Player Exist was a succesful!");
                 }
             }
         });
@@ -397,8 +385,6 @@ public class Database {
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Adding a new player was a succesful!");
                 }
             }
         });
@@ -445,8 +431,6 @@ public class Database {
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Input of Language was a succesful!");
                 }
             }
         });
@@ -466,8 +450,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of Language was a succesful!");
                 }
             }
         });
@@ -486,8 +468,6 @@ public class Database {
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Input of Job was a succesful!");
                 }
             }
         });
@@ -507,8 +487,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of Job was a succesful!");
                 }
             }
         });
@@ -527,8 +505,6 @@ public class Database {
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Input of Kills was a succesful!");
                 }
             }
         });
@@ -555,8 +531,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of Kills was a succesful!");
                 }
             }
         });
@@ -582,8 +556,6 @@ public class Database {
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Input of Deaths was a succesful!");
                 }
             }
         });
@@ -603,8 +575,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of Deaths was a succesful!");
                 }
             }
         });
@@ -623,8 +593,6 @@ public class Database {
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Input of Cooldown was a succesful!");
                 }
             }
         });
@@ -644,8 +612,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of Cooldown was a cooldown!");
                 }
             }
         });
@@ -664,8 +630,6 @@ public class Database {
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Input of Experience was a succesful!");
                 }
             }
         });
@@ -685,8 +649,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of Experience was a succesful!");
                 }
             }
         });
@@ -705,8 +667,6 @@ public class Database {
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Input of Level was a succesful!");
                 }
             }
         });
@@ -726,8 +686,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of Level was a succesful!");
                 }
             }
         });
@@ -746,8 +704,6 @@ public class Database {
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Input of Coins was a succesful!");
                 }
             }
         });
@@ -781,8 +737,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of Coins was a succesful!");
                 }
             }
         });
@@ -802,8 +756,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of Necesary was a succesful!");
                 }
             }
         });
@@ -822,8 +774,6 @@ public class Database {
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Input of Necesary was a succesful!");
                 }
             }
         });
@@ -842,8 +792,6 @@ public class Database {
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Input of Time was a succesful!");
                 }
             }
         });
@@ -863,8 +811,6 @@ public class Database {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                } finally {
-                    Core.log("Output of Time was a succesful!");
                 }
             }
         });

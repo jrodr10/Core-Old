@@ -3,17 +3,15 @@ package nycuro.jobs.handlers;
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
 import cn.nukkit.entity.Entity;
-import cn.nukkit.entity.EntityCreature;
-import cn.nukkit.entity.passive.EntityAnimal;
 import cn.nukkit.event.EventHandler;
-import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.entity.EntityDamageByChildEntityEvent;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
 import cn.nukkit.event.entity.EntityDeathEvent;
-import cn.nukkit.event.player.PlayerDeathEvent;
+import cn.nukkit.item.Item;
+import cn.nukkit.math.Vector3;
 import nycuro.API;
 import nycuro.database.Database;
 import nycuro.database.objects.Profile;
@@ -177,7 +175,10 @@ public class JobsHandlers implements Listener {
     private void sendToRespawn(Entity entity, Player damager, EntityDamageEvent event) {
         Player player = (Player) entity;
         API.getMessageAPI().sendHitBowMessage(player, damager);
-        if (event.getDamage() >= player.getHealth()) {
+        if (event.getDamage() > player.getHealth()) {
+            for (Item item : player.getInventory().getContents().values()) {
+                player.getLevel().dropItem(new Vector3(player.getX(), player.getY() + 1, player.getZ()), item);
+            }
             event.setCancelled();
             player.setHealth(20);
             player.getFoodData().setLevel(20);
@@ -185,8 +186,11 @@ public class JobsHandlers implements Listener {
             player.removeAllEffects();
             player.getInventory().clearAll();
             API.getMessageAPI().sendDeadMessage(player, damager);
-            Profile profile = Database.profile.get(player.getUniqueId());
-            profile.addDeaths(1);
+            Profile profilePlayer = Database.profile.get(player.getUniqueId());
+            Profile profileDamager = Database.profile.get(damager.getUniqueId()); // Todo: Zombies, Monsters.
+            profilePlayer.addDeaths(1);
+            profileDamager.addKills(1);
+
         }
         if (player.getPosition().getY() < 0) {
             event.setCancelled();
@@ -195,8 +199,8 @@ public class JobsHandlers implements Listener {
             player.teleport(player.getServer().getDefaultLevel().getSpawnLocation());
             player.removeAllEffects();
             player.getInventory().clearAll();
-            Profile profile = Database.profile.get(player.getUniqueId());
-            profile.addDeaths(1);
+            Profile profilePlayer = Database.profile.get(player.getUniqueId());
+            profilePlayer.addDeaths(1);
         }
     }
 }

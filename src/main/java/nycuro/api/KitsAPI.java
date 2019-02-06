@@ -41,7 +41,6 @@ public class KitsAPI {
         //double price = cost.get(1);
         //double insuficient = price - moneyPlayer;
         long time = System.currentTimeMillis();
-        API.getMechanicAPI().checkCooldownTime(player, time);
         Profile profile = Database.profile.get(player.getUniqueId());
         long cooldown = profile.getCooldown();
         long timeGone = time - cooldown;

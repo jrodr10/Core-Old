@@ -23,10 +23,7 @@ import nycuro.commands.list.*;
 import nycuro.commands.list.economy.AddCoinsCommand;
 import nycuro.commands.list.economy.GetCoinsCommand;
 import nycuro.commands.list.economy.SetCoinsCommand;
-import nycuro.commands.list.mechanic.SaveToDatabaseCommand;
-import nycuro.commands.list.mechanic.TopCoinsCommand;
-import nycuro.commands.list.mechanic.TopDeathsCommand;
-import nycuro.commands.list.mechanic.TopKillsCommand;
+import nycuro.commands.list.mechanic.*;
 import nycuro.commands.list.time.GetTimeCommand;
 import nycuro.crate.CrateAPI;
 import nycuro.crate.handlers.CrateHandlers;
@@ -83,6 +80,15 @@ public class Core extends PluginBase {
         return String.valueOf(hours + ":" + minutes + ":" + seconds);
     }
 
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
+
     @Override
     public void onLoad() {
         registerAPI();
@@ -112,6 +118,7 @@ public class Core extends PluginBase {
     private void registerAPI() {
         API.mainAPI = this;
         API.mechanicAPI = new MechanicAPI();
+        API.mechanicHandlers = new MechanicHandlers();
         API.utilsAPI = new UtilsAPI();
         UtilsAPI.randomTPUtils = new RandomTPUtils();
         UtilsAPI.warpUtils = new WarpUtils();
@@ -138,6 +145,7 @@ public class Core extends PluginBase {
         this.getServer().getCommandMap().register("coins", new GetCoinsCommand());
         this.getServer().getCommandMap().register("topcoins", new TopCoinsCommand());
         this.getServer().getCommandMap().register("topkills", new TopKillsCommand());
+        this.getServer().getCommandMap().register("toptime", new TopTimeCommand());
         this.getServer().getCommandMap().register("topdeaths", new TopDeathsCommand());
         this.getServer().getCommandMap().register("savetodatabase", new SaveToDatabaseCommand());
         this.getServer().getCommandMap().register("spawnentities", new SpawnEntitiesCommand());
