@@ -38,8 +38,6 @@ public class API {
 
     public static SlotsAPI slotsAPI;
 
-    public static MechanicHandlers mechanicHandlers;
-
     public static Core getMainAPI() {
         return mainAPI;
     }
@@ -87,6 +85,4 @@ public class API {
     public static SlotsAPI getSlotsAPI() {
         return slotsAPI;
     }
-
-    public static MechanicHandlers getMechanicHandlers() { return mechanicHandlers; }
 }

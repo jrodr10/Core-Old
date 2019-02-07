@@ -16,15 +16,12 @@ nycuro\kits\GuardianKit.class
 nycuro\api\ShopAPI$5.class
 nycuro\commands\list\SpawnCommand.class
 nycuro\commands\list\economy\GetCoinsCommand.class
-nycuro\commands\list\CoordsCommand$1.class
 nycuro\commands\list\ShopCommand.class
 nycuro\database\Database$28.class
-nycuro\mechanic\handlers\MechanicHandlers$3.class
 nycuro\commands\list\SpawnEntitiesCommand.class
 nycuro\language\handlers\LanguageHandlers.class
 nycuro\utils\RandomTPUtils$3.class
 nycuro\api\ShopAPI$13.class
-nycuro\level\handlers\LevelHandlers$3.class
 nycuro\gui\handlers\GUIHandlers.class
 nycuro\commands\list\SpawnCommand$1.class
 nycuro\api\ShopAPI$10.class
@@ -38,7 +35,6 @@ nycuro\database\Database$17.class
 nycuro\api\UtilsAPI$1.class
 nycuro\utils\WarpUtils.class
 nycuro\chat\ChatFormat.class
-nycuro\level\handlers\LevelHandlers$4.class
 nycuro\api\ShopAPI$11.class
 nycuro\database\Database$10.class
 nycuro\commands\list\mechanic\TopCoinsCommand.class
@@ -64,12 +60,11 @@ nycuro\kits\EnchantedStarterKit.class
 nycuro\api\ShopAPI$18.class
 nycuro\utils\WarpUtils$1.class
 nycuro\gui\list\ResponseFormWindow.class
+nycuro\tasks\ScoreboardTask.class
 nycuro\kits\handlers\KitHandlers.class
 nycuro\shop\BuyUtils.class
-nycuro\commands\list\CoordsCommand$2.class
 nycuro\api\ShopAPI.class
 nycuro\utils\RandomTPUtils$1.class
-nycuro\mechanic\handlers\MechanicHandlers$2.class
 nycuro\api\ShopAPI$9.class
 nycuro\ai\entity\BossEntity.class
 nycuro\api\JobsAPI$1.class
@@ -80,7 +75,6 @@ nycuro\commands\PrincipalCommand.class
 nycuro\jobs\handlers\JobsHandlers.class
 nycuro\mechanic\handlers\MechanicHandlers$1.class
 nycuro\utils\RandomTPUtils$2.class
-nycuro\level\handlers\LevelHandlers$2.class
 nycuro\API.class
 nycuro\api\ShopAPI$3.class
 nycuro\database\Database$21.class
@@ -117,7 +111,6 @@ nycuro\level\handlers\LevelHandlers.class
 nycuro\utils\ValueLongComparator.class
 nycuro\api\ShopAPI$15.class
 nycuro\commands\list\SpawnBossCommand.class
-nycuro\level\handlers\LevelHandlers$1.class
 nycuro\commands\list\mechanic\TopDeathsCommand.class
 nycuro\abuse\handlers\AbuseHandlers.class
 nycuro\kits\KnightKit.class

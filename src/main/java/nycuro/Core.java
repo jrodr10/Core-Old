@@ -7,14 +7,16 @@ import cn.nukkit.scheduler.Task;
 import cn.nukkit.utils.DummyBossBar;
 import cn.nukkit.utils.TextFormat;
 import com.creeperface.nukkit.placeholderapi.api.PlaceholderAPI;
+import gt.creeperface.nukkit.scoreboardapi.scoreboard.DisplayObjective;
+import gt.creeperface.nukkit.scoreboardapi.scoreboard.FakeScoreboard;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import me.lucko.luckperms.LuckPerms;
 import me.lucko.luckperms.api.LuckPermsApi;
 import me.lucko.luckperms.api.Node;
 import me.lucko.luckperms.api.NodeFactory;
-import me.lucko.luckperms.common.commands.generic.permission.PermissionSet;
-import me.lucko.luckperms.common.node.factory.NodeBuilder;
 import nycuro.abuse.handlers.AbuseHandlers;
 import nycuro.ai.AiAPI;
 import nycuro.api.*;
@@ -44,6 +46,7 @@ import nycuro.shop.SellUtils;
 import nycuro.tasks.BossBarTask;
 import nycuro.tasks.CheckLevelTask;
 import nycuro.tasks.SaveToDatabaseTask;
+import nycuro.tasks.ScoreboardTask;
 import nycuro.utils.MechanicUtils;
 import nycuro.utils.RandomTPUtils;
 import nycuro.utils.WarpUtils;
@@ -60,6 +63,9 @@ public class Core extends PluginBase {
 
     public static Object2ObjectMap<UUID, Long> startTime = new Object2ObjectOpenHashMap<>();
     public Object2ObjectMap<String, DummyBossBar> bossbar = new Object2ObjectOpenHashMap<>();
+    public Object2ObjectMap<String, FakeScoreboard> scoreboard = new Object2ObjectOpenHashMap<>();
+    public Object2IntMap<String> timers = new Object2IntOpenHashMap<>();
+    public Object2ObjectMap<String, Boolean> coords = new Object2ObjectOpenHashMap<>();
 
     public static void log(String s) {
         API.getMainAPI().getServer().getLogger().info(TextFormat.colorize("&a" + s));
@@ -118,7 +124,6 @@ public class Core extends PluginBase {
     private void registerAPI() {
         API.mainAPI = this;
         API.mechanicAPI = new MechanicAPI();
-        API.mechanicHandlers = new MechanicHandlers();
         API.utilsAPI = new UtilsAPI();
         UtilsAPI.randomTPUtils = new RandomTPUtils();
         UtilsAPI.warpUtils = new WarpUtils();
@@ -231,6 +236,7 @@ public class Core extends PluginBase {
             }
         }, 20 * 15, 20 * 60 * 28, true);
         this.getServer().getScheduler().scheduleRepeatingTask(new BossBarTask(), 20 * 5, true);
+        this.getServer().getScheduler().scheduleRepeatingTask(new ScoreboardTask(), 10, true);
         this.getServer().getScheduler().scheduleRepeatingTask(new CheckLevelTask(), 20 * 20, true);
         this.getServer().getScheduler().scheduleDelayedTask(new SaveToDatabaseTask(), 20 * 60 * 60 * 3, true);
     }

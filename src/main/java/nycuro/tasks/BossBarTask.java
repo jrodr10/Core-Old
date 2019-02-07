@@ -21,12 +21,13 @@ public class BossBarTask extends Task {
     @Override
     public void onRun(int i) {
         for (Player player : API.getMainAPI().getServer().getOnlinePlayers().values()) {
+            Profile profile = Database.profile.get(player.getUniqueId());
+
             if (API.getMainAPI().bossbar.get(player.getName()) != null) {
                 if (Combat.getAPI().inCombat(player)) return;
                 String username = player.getName();
                 Integer playerTime = timers.getOrDefault(username, 1);
                 int lang = 0;
-                Profile profile = Database.profile.get(player.getUniqueId());
                 if (profile != null) {
                     lang = profile.getLanguage();
                     profile.addTime(5000);

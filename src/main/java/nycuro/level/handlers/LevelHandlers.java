@@ -30,9 +30,6 @@ public class LevelHandlers implements Listener {
         FPlayer fPlayer = event.getFPlayer();
         Player player = fPlayer.getPlayer();
         Faction faction = event.getFaction();
-        MechanicHandlers.fakeScoreboard.removePlayer(player);
-        MechanicHandlers.taskHandler.cancel();
-        MechanicHandlers.taskRepeatingHandler.cancel();
         Conf.prefixAdmin = "**";
         Conf.prefixMod = "*";
         int level = Database.profile.get(player.getUniqueId()).getLevel();
@@ -42,23 +39,6 @@ public class LevelHandlers implements Listener {
         } else {
             player.setNameTag("§7[§e" + JobsAPI.jobs.get(job) + "§7] " + "§a[§c" + level + "§a] §7" + fPlayer.getRole().getPrefix() + faction.getTag() + " §3" + fPlayer.getName());
         }
-        MechanicHandlers.taskHandler = API.getMainAPI().getServer().getScheduler().scheduleDelayedTask(new Task() {
-            @Override
-            public void onRun(int i) {
-                MechanicHandlers.fakeScoreboard.addPlayer(player);
-            }
-        }, 20 * 4);
-        MechanicHandlers.taskRepeatingHandler = API.getMainAPI().getServer().getScheduler().scheduleRepeatingTask(new Task() {
-            @Override
-            public void onRun(int i) {
-                if (!player.isOnline()) {
-                    this.getHandler().cancel();
-                    this.cancel();
-                }
-                API.getMechanicHandlers().addToScoreboard(player, MechanicHandlers.object);
-                MechanicHandlers.fakeScoreboard.update();
-            }
-        },20 * 5, true);
     }
 
     /*@EventHandler
@@ -74,9 +54,6 @@ public class LevelHandlers implements Listener {
         FPlayer fPlayer = event.getFPlayer();
         Player player = fPlayer.getPlayer();
         if (!fPlayer.isOnline()) return;
-        MechanicHandlers.fakeScoreboard.removePlayer(player);
-        MechanicHandlers.taskHandler.cancel();
-        MechanicHandlers.taskRepeatingHandler.cancel();
         int level = Database.profile.get(player.getUniqueId()).getLevel();
         int job = Database.profile.get(player.getUniqueId()).getJob();
         if (job == 0) {
@@ -84,23 +61,6 @@ public class LevelHandlers implements Listener {
         } else {
             player.setNameTag("§7[§e" + JobsAPI.jobs.get(job) + "§7] " + "§a[§c" + level + "§a] §7" + player.getName());
         }
-        MechanicHandlers.taskHandler = API.getMainAPI().getServer().getScheduler().scheduleDelayedTask(new Task() {
-            @Override
-            public void onRun(int i) {
-                MechanicHandlers.fakeScoreboard.addPlayer(player);
-            }
-        }, 20 * 4);
-        MechanicHandlers.taskRepeatingHandler = API.getMainAPI().getServer().getScheduler().scheduleRepeatingTask(new Task() {
-            @Override
-            public void onRun(int i) {
-                if (!player.isOnline()) {
-                    this.getHandler().cancel();
-                    this.cancel();
-                }
-                API.getMechanicHandlers().addToScoreboard(player, MechanicHandlers.object);
-                MechanicHandlers.fakeScoreboard.update();
-            }
-        },20 * 5, true);
     }
 
     @EventHandler

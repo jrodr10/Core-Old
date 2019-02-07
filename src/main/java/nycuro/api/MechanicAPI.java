@@ -15,6 +15,7 @@ import cn.nukkit.level.Position;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.utils.BlockColor;
 import cn.nukkit.utils.DummyBossBar;
+import gt.creeperface.nukkit.scoreboardapi.scoreboard.*;
 import nycuro.API;
 import nycuro.ai.entity.BossEntity;
 import nycuro.database.Database;
@@ -110,6 +111,20 @@ public class MechanicAPI {
                 .color(BlockColor.GREEN_BLOCK_COLOR)
                 .build());
         player.createBossBar(API.getMainAPI().bossbar.get(player.getName()));
+    }
+
+    public void createScoreboard(Player player) {
+        FakeScoreboard fakeScoreboard = new FakeScoreboard();
+        Objective object = new Objective("§3§lNycuRO §r§7» §bFactions", new ObjectiveCriteria("dummy", true));
+        DisplayObjective newObject = new DisplayObjective(
+                object,
+                ObjectiveSortOrder.DESCENDING,
+                ObjectiveDisplaySlot.SIDEBAR
+        );
+
+        fakeScoreboard.objective = newObject;
+        fakeScoreboard.addPlayer(player);
+        API.getMainAPI().scoreboard.put(player.getName(), fakeScoreboard);
     }
 
     public void sendServersModal(Player player) {
