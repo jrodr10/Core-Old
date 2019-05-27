@@ -1,7 +1,9 @@
-# NycuRO-Factions Core
+# NycuRO-Factions Core - old
 
 This Project was created for My Factions Server, NycuRO Factions.
 This Core was created for work with Nukkit, Java project.
+
+# Update: This is an old core for Nukkit. I wanted to push up to public. Newest core is based on that, but have more and much much changes. This core is possible to have errors on database locks and other. Good for devs only.
 
 # Version
 
@@ -12,6 +14,7 @@ About version, i wait finish my TODO's and release 1.0.0.
 - Level System [10%]
 - Achievments System [0%]
 - Shop System [100%]
+- Database SQLITE [100%]
 - Sell System [100%]
 - Trade System [0%]
 - RandomTP System [100%] (Credits: @SupremeMortal)
@@ -47,7 +50,7 @@ About version, i wait finish my TODO's and release 1.0.0.
 ```html
 BSD 3-Clause License
 
-Copyright (c) 2018, Ghergu Nicolae Marius, NycuRO, NycuRO Servers.
+Copyright (c) 2018-2019, Ghergu Nicolae Marius, NycuRO, NycuRO Servers.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
