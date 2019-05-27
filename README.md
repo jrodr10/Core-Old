@@ -5,6 +5,8 @@ This Core was created for work with Nukkit, Java project.
 
 # Update: This is an old core for Nukkit. I wanted to push up to public. Newest core is based on that, but have more and much much changes. This core is possible to have errors on database locks and other. Good for devs only.
 
+# Edit : Work actually, not have errors of outdated things. Single thing is to update warps and others for your server.
+
 # Version
 
 About version, i wait finish my TODO's and release 1.0.0.
