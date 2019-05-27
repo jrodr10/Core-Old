@@ -6,6 +6,7 @@ This Core was created for work with Nukkit, Java project.
 # Update: This is an old core for Nukkit. I wanted to push up to public. Newest core is based on that, but have more and much much changes. This core is possible to have errors on database locks and other. Good for devs only.
 
 # Edit : Work actually, not have errors of outdated things. Single thing is to update warps and others for your server.
+I don't remember to be full list here, so please verify code. It's not fully, i added another things who i didn't even know now what it is :v
 
 # Version
 
@@ -17,6 +18,7 @@ About version, i wait finish my TODO's and release 1.0.0.
 - Achievments System [0%]
 - Shop System [100%]
 - Database SQLITE [100%]
+- Money system and others on database [100%]
 - Sell System [100%]
 - Trade System [0%]
 - RandomTP System [100%] (Credits: @SupremeMortal)
@@ -46,7 +48,6 @@ About version, i wait finish my TODO's and release 1.0.0.
 # Todo v1.1.0:
 - Add Permissions System on Core. (MadPerms). [0%]
 - MyMap plugin implement on Core. [0%]
-- Add EconomyAPI System on Core [0%]
 
 # License
 ```html
