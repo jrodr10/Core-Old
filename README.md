@@ -8,6 +8,8 @@ This Core was created for work with Nukkit, Java project.
 # Edit : Work actually, not have errors of outdated things. Single thing is to update warps and others for your server.
 I don't remember to be full list here, so please verify code. It's not fully, i added another things who i didn't even know now what it is :v
 
+
+# EDIT 2: If you use that, just add credits and my discord: NycuRO#0770, thank you :)
 # Version
 
 About version, i wait finish my TODO's and release 1.0.0.
